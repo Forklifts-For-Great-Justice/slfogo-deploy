@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  slfogo:
+    container_name: slfogo
+    image: ghcr.io/forklifts-for-great-justice/slfogo:latest
+    ports:
+      - "${PORT}:${PORT}"
+      - "${METRIC_PORT}:${METRIC_PORT}"
+    environment:
+     PORT: "${PORT}"
+     RUSER: "${RUSER}"
+     RPASS: "${RPASS}"
+     RABBIT: "${RABBIT_HOST}"
+     RPORT: "${RABBIT_PORT}"
+     REXCHANGE: "${RABBIT_EXCHANGE}"
+     ETCD: "${ETCD_SERVER}"
+     MPORT: "${METRIC_PORT}"
+     FQDN: "${FQDN}"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: 3
